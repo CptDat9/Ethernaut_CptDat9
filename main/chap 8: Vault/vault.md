@@ -1,5 +1,7 @@
 ### Kết luận
-- Lỗ hổng: Cơ chế mở khóa quá dễ dàng bị phá, cần thêm một số `modifiers`, `require` chặt hơn.
+- Lỗ hổng: Lưu password dưới dạng dữ liệu công khai trong blockchain, dễ dàng bị đọc và khai thác.
+- Cách phòng: Cần thêm một số `modifiers`, `require` chặt hơn, ẩn hoặc mã hóa các dữ liệu quan trọng (`password`) bằng  cách sử dụng `keccak256(abi.encodePacked(_password)`, hoặc có thể giới hạn số lần thử `attempt <= 3` hoặc
+kiểm tra logging.
 ### Contract tấn công
 ```solidity
 // SPDX-License-Identifier: MIT
