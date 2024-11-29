@@ -1,4 +1,7 @@
 ### Kết luận
+- `delegatecall` làm một hàm có sẵn trong solidity, nó cho phép gọi một hợp đồng B từ hợp đông A ( không thay đổi trạng thái B ) nhưng nó có thể làm thay đổi trạng thái của A.
+- Lỗ hổng: Trong contract `Delegate`, hàm `pwm` cho phép thay đổi biến `owner` thành địa chỉ của người gọi `msg.sender`. Kẻ tấn công chỉ cần gửi dữ liệu `msg.data` tương ứng với hàm `pwm()` thì sẽ thay đổi được quyền sở hữu hợp đồng (`owner`) sang của mình.
+- Cách phòng tránh: Sử dụng thêm modifier, require cho các function.
 
 ### Contract
 ```solidity
