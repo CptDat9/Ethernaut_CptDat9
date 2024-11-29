@@ -3,11 +3,13 @@
 ### Contract tấn công
 ```solidity
 // SPDX-License-Identifier: MIT
+import './vault.sol';
 pragma solidity ^0.8.0;
 interface IVault{
-    function unlock(bytes32 _password) public;
+    function unlock(bytes32 _password) external;
 }
 contract VaultAttack{
+    IVault public challenge;
     constructor (address _victim){
         challenge = IVault(_victim);
     }
