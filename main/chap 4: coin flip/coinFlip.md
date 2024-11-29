@@ -57,3 +57,4 @@ contract CoinFlip {
     }
 }
 ```
+![image](https://github.com/user-attachments/assets/2b49c3b9-a23e-418e-b569-bf54c7112ab4)
