@@ -3,6 +3,7 @@
 - Cách phòng tránh: có thể cập nhật trạng thái trước, sử dụng khóa nonReentrant, và hạn chế gas khi chuyển tiền.
 - VD modifier noReentrant (có thể thêm require số dư mới của người dùng thì mới được chuyển tiếp).
 ```solidity
+    bool private locked = false;
     modifier noReentrant() {
         require(!locked, "No re-entrancy");
         locked = true;
