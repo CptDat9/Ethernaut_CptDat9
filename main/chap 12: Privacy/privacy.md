@@ -20,7 +20,7 @@ interface IPrivacy{
     function unlock(bytes16 _key) external;
 }
 contract PrivacyAttack{
-    IPrivacy victim;
+    IPrivacy public victim;
     constructor (address challenge){
         victim = IPrivacy(challenge);
     }
