@@ -4,7 +4,7 @@
 ### Contract tấn công
 ```solidity
 // SPDX-License-Identifier: MIT
-import 'openzeppelin-contracts/contracts/utils/math/SafeMath.sol'; // Path change of openzeppelin contract
+import 'openzeppelin-contracts/contracts/utils/math/SafeMath.sol'; 
 
 pragma solidity ^0.8.0;
 interface IGatekeeperOne{
