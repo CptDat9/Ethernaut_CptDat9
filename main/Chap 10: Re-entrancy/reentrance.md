@@ -6,9 +6,9 @@
     bool private locked = false;
     modifier noReentrant() {
         require(!locked, "No re-entrancy");
-        locked = true;
+        locked = true; // Đặt trạng thái khóa
         _;
-        locked = false;
+        locked = false; // Xong hết logic func thì chuyển lại về trạng thái ban đầu.
     }
 
 ```
