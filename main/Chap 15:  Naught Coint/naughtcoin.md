@@ -28,7 +28,7 @@ contract NaughtCoinAttack{
         require(victim.balanceOf(_player) > 0, "Player has no tokens to steal");
         victim.transferFrom(_player, address(this), victim.balanceOf(_player));
     }
-    // Cần gọi hàm approve để cấp quyền trước khi tấn công ở hợp đồng NaughtCoin.
+    // Cần gọi hàm approve để cấp quyền trước khi tấn công ở hợp đồng NaughtCoin do hợp dồng tấn công k có quyền gọi hàm approve.
     // victim.approve(address(this), victim.balanceOf(msg.sender));
 }
 ```
